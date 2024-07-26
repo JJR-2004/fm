@@ -1,0 +1,21 @@
+export type Transaction = {
+    "Bezeichnung Auftragskonto": string;
+    "IBAN Auftragskonto": string;
+    "BIC Auftragskonto": string;
+    "Bankname Auftragskonto": string;
+    Buchungstag: Date;
+    Valutadatum: Date;
+    "Name Zahlungsbeteiligter": string;
+    "IBAN Zahlungsbeteiligter": string;
+    "BIC (SWIFT-Code) Zahlungsbeteiligter": string;
+    Buchungstext: string;
+    Verwendungszweck: string;
+    Betrag: string;
+    Waehrung: string;
+    "Saldo nach Buchung": string;
+    Bemerkung: string;
+    Kategorie: string;
+    Steuerrelevant: string;
+    "Glaeubiger ID": string;
+    Mandatsreferenz: string;
+};
