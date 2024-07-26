@@ -6,20 +6,10 @@ import config from "../index";
 import { zahlungsempfaengerEntry } from "../categories/zahlungsempfaengerEntry";
 
 export async function insert(element: Transaction) {
-    let result = await executeQuery(insertZahlungsempfaengerQuery, [
-        element["IBAN Zahlungsbeteiligter"],
-        element["Name Zahlungsbeteiligter"],
-    ]);
-
     return result;
 }
 
 export async function get(element: Transaction) {
-    let restult: zahlungsempfaengerEntry[] = await executeQuery(
-        getZahlungsempfaengerQuery,
-        [element["IBAN Zahlungsbeteiligter"]]
-    );
-
     return restult;
 }
 
