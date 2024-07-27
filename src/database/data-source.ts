@@ -1,6 +1,7 @@
 // data-source.ts
 import { DataSource } from "typeorm";
-import { girokontoEntity } from "../entity/girokontoEntity";
+import { girokonto as girokontoEntity } from "../entity/girokontoEntity";
+import { zahlungsempfaenger as zahlumgsempfaengerEntity } from "../entity/zahlungsempfaengerEntity";
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -11,7 +12,15 @@ export const AppDataSource = new DataSource({
     database: "finanztool",
     synchronize: true, // Set to false in production
     logging: false,
-    entities: [girokontoEntity],
+    entities: [girokontoEntity, zahlumgsempfaengerEntity],
     migrations: [],
     subscribers: [],
 });
+
+await AppDataSource.initialize()
+    .then(async () => {
+        console.log("Erfolgreich mit der Datenbank verbunden.");
+    })
+    .catch((error) => {
+        console.error("Probleme bei der Verbindung mit der Datenbank: ", error);
+    });

@@ -36,6 +36,8 @@ class Config {
 
         let decimal = parseFloat(betrag);
 
+        console.log("DEZIMAL: ", decimal);
+
         if (isNaN(decimal)) {
             throw new Error(
                 `converteBetragFormat | Falsches Format für den Betrag: ${betrag}`

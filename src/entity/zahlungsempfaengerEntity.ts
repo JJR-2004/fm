@@ -9,13 +9,18 @@ import {
 } from "typeorm";
 
 @Entity()
-export class zahlumgsempfaenger {
+export class zahlungsempfaenger {
+    constructor(IBAN: string, NAME: string) {
+        this.IBAN = IBAN;
+        this.NAME = NAME;
+    }
+
     @PrimaryGeneratedColumn()
-    ID_ZAHLUNGSEMPFAENGER: number | undefined;
+    ID_ZAHLUNGSEMPFAENGER!: number;
 
-    @Column()
-    IBAN: string | undefined;
+    @Column({ type: "varchar", length: 45 })
+    IBAN: string;
 
-    @Column()
-    NAME: string | undefined;
+    @Column({ type: "varchar", length: 100 })
+    NAME: string;
 }
