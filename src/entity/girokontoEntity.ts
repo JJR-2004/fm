@@ -9,44 +9,43 @@ import {
     OneToOne,
     Relation,
 } from "typeorm";
-import { zahlumgsempfaenger } from "./zahlungsempfaengerEntity";
 
 @Entity()
-export class girokontoEntity {
+export class girokonto {
     constructor(
         BUCHUNGSTAG: string,
         VERWENDUNGSZWECK: string,
         BETRAG: number,
         SALDO_NACH_BUCHUNG: number,
         KATEGORIE: string,
-        ZAHLUNGSEMPFÄNGER_ID: number
+        ZAHLUNGSEMPFAENGER_ID: number
     ) {
-        BUCHUNGSTAG = BUCHUNGSTAG;
-        VERWENDUNGSZWECK = VERWENDUNGSZWECK;
-        BETRAG = BETRAG;
-        SALDO_NACH_BUCHUNG = SALDO_NACH_BUCHUNG;
-        KATEGORIE = KATEGORIE;
-        ZAHLUNGSEMPFÄNGER_ID = ZAHLUNGSEMPFÄNGER_ID;
+        this.BUCHUNGSTAG = BUCHUNGSTAG;
+        this.VERWENDUNGSZWECK = VERWENDUNGSZWECK;
+        this.BETRAG = BETRAG;
+        this.SALDO_NACH_BUCHUNG = SALDO_NACH_BUCHUNG;
+        this.KATEGORIE = KATEGORIE;
+        this.ZAHLUNGSEMPFAENGER_ID = ZAHLUNGSEMPFAENGER_ID;
     }
 
     @PrimaryGeneratedColumn()
     ID_GIROKONTO!: number;
 
-    @Column()
-    BUCHUNGSTAG?: string;
+    @Column({ type: "varchar", length: 50 })
+    BUCHUNGSTAG: string;
 
-    @Column()
-    VERWENDUNGSZWECK?: string;
+    @Column({ type: "varchar", length: 255 })
+    VERWENDUNGSZWECK: string;
 
-    @Column()
-    BETRAG?: number;
+    @Column({ type: "decimal", precision: 10, scale: 2 })
+    BETRAG: number;
 
-    @Column()
-    SALDO_NACH_BUCHUNG?: number;
+    @Column({ type: "decimal", precision: 10, scale: 2 })
+    SALDO_NACH_BUCHUNG: number;
 
-    @Column()
-    KATEGORIE?: string;
+    @Column({ type: "varchar", length: 50 })
+    KATEGORIE: string;
 
-    @Column()
-    ZAHLUNGSEMPFAENGER_ID?: number;
+    @Column({ type: "int" })
+    ZAHLUNGSEMPFAENGER_ID: number;
 }
