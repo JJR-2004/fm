@@ -6,8 +6,8 @@ class zahlumgsempfaengerRouter {
     router = Router();
 
     constructor() {
-        this.router.post("/readIn", girokontoUtils.readIn);
         this.router.get("/get", girokontoUtils.get);
+        this.router.post("/insert", girokontoUtils.insert);
     }
 }
 

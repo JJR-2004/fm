@@ -14,14 +14,15 @@ export async function insert(entry: zahlumgsempfaengerEntity) {
 }
 
 export async function getEntrybyID(id: number) {
-    return await zahlungsempfaengerRepo.find({
-        where: {
-            ID_ZAHLUNGSEMPFAENGER: id,
-        },
-    });
+    return await zahlungsempfaengerRepo
+        .createQueryBuilder("zahlungsempfaenger")
+        .where("zahlungsempfaenger.ID_ZAHLUNGSEMPFAENGER = :id", { id: id })
+        .getOne();
 }
 
-export async function getEntrybyParams(params: any) {
-    console.log("params: ", params);
-    return await zahlungsempfaengerRepo.find(params);
+export async function getEntrybyIBAN(IBAN: string) {
+    return await zahlungsempfaengerRepo
+        .createQueryBuilder("zahlungsempfaenger")
+        .where("zahlungsempfaenger.IBAN = :IBAN", { IBAN: IBAN })
+        .getOne();
 }

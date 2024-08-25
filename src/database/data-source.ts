@@ -2,6 +2,7 @@
 import { DataSource } from "typeorm";
 import { girokonto as girokontoEntity } from "../entity/girokontoEntity";
 import { zahlungsempfaenger as zahlumgsempfaengerEntity } from "../entity/zahlungsempfaengerEntity";
+import { Kategorie as kategorieEntitiy } from "../entity/kategorieEntitiy";
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
     database: "finanztool",
     synchronize: true, // Set to false in production
     logging: false,
-    entities: [girokontoEntity, zahlumgsempfaengerEntity],
+    entities: [girokontoEntity, zahlumgsempfaengerEntity, kategorieEntitiy],
     migrations: [],
     subscribers: [],
 });

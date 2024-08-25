@@ -1,4 +1,3 @@
-// entity/User.ts
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -8,7 +7,10 @@ import {
     ManyToOne,
     OneToOne,
     Relation,
+    JoinColumn,
 } from "typeorm";
+import { zahlungsempfaenger } from "./zahlungsempfaengerEntity";
+import { Kategorie } from "./kategorieEntitiy";
 
 @Entity()
 export class girokonto {
@@ -17,15 +19,15 @@ export class girokonto {
         VERWENDUNGSZWECK: string,
         BETRAG: number,
         SALDO_NACH_BUCHUNG: number,
-        KATEGORIE: string,
-        ZAHLUNGSEMPFAENGER_ID: number
+        KATEGORIE: Kategorie,
+        ZAHLUNGSEMPFAENGER: zahlungsempfaenger
     ) {
         this.BUCHUNGSTAG = BUCHUNGSTAG;
         this.VERWENDUNGSZWECK = VERWENDUNGSZWECK;
         this.BETRAG = BETRAG;
         this.SALDO_NACH_BUCHUNG = SALDO_NACH_BUCHUNG;
         this.KATEGORIE = KATEGORIE;
-        this.ZAHLUNGSEMPFAENGER_ID = ZAHLUNGSEMPFAENGER_ID;
+        this.ZAHLUNGSEMPFAENGER = ZAHLUNGSEMPFAENGER;
     }
 
     @PrimaryGeneratedColumn()
@@ -43,9 +45,14 @@ export class girokonto {
     @Column({ type: "decimal", precision: 10, scale: 2 })
     SALDO_NACH_BUCHUNG: number;
 
-    @Column({ type: "varchar", length: 50 })
-    KATEGORIE: string;
+    @ManyToOne(
+        () => zahlungsempfaenger,
+        (zahlungsempfänger) => zahlungsempfänger.ID_ZAHLUNGSEMPFAENGER
+    )
+    @JoinColumn({ name: "ZAHLUNGSEMPFAENGER_ID" })
+    ZAHLUNGSEMPFAENGER!: zahlungsempfaenger;
 
-    @Column({ type: "int" })
-    ZAHLUNGSEMPFAENGER_ID: number;
+    @ManyToOne(() => Kategorie, (kategorie) => kategorie.ID_KATEGORIE)
+    @JoinColumn({ name: "KATEGORIE_ID" })
+    KATEGORIE!: Kategorie;
 }

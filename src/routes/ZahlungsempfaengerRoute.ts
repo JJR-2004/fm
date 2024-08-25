@@ -7,10 +7,6 @@ class girokontoRouter {
 
     constructor() {
         this.router.get("/get", zahlungsempfaengerUtils.get);
-        this.router.get(
-            "/readIn",
-            zahlungsempfaengerUtils.readInZahlungsempfänger
-        );
     }
 }
 
